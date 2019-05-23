@@ -30,55 +30,55 @@ public class MemberTest {
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
 	
-	@Test
-	public void testInsertMember() {
-		String sql = "insert into tbl_member(userid, userpw, username) values(?,?,?)";
-		
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(sql);
-			
-			for (int i = 0; i < 100; i++) {
-				pstmt.setString(2, pwencoder.encode("pw" + i));
-				
-				if (i < 80) {
-					pstmt.setString(1, "user" + i);
-					pstmt.setString(3, "일반사용자" + i);
-				} else if (i < 90) {
-					pstmt.setString(1, "manager" + i);
-					pstmt.setString(3, "운영자" + i);
-				} else {
-					pstmt.setString(1, "admin" + i);
-					pstmt.setString(3, "관리자" + i);
-				}
-				
-				pstmt.executeUpdate();
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-			
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
+//	@Test
+//	public void testInsertMember() {
+//		String sql = "insert into tbl_member(userid, userpw, username) values(?,?,?)";
+//		
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		
+//		try {
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(sql);
+//			
+//			for (int i = 0; i < 100; i++) {
+//				pstmt.setString(2, pwencoder.encode("pw" + i));
+//				
+//				if (i < 80) {
+//					pstmt.setString(1, "user" + i);
+//					pstmt.setString(3, "일반사용자" + i);
+//				} else if (i < 90) {
+//					pstmt.setString(1, "manager" + i);
+//					pstmt.setString(3, "운영자" + i);
+//				} else {
+//					pstmt.setString(1, "admin" + i);
+//					pstmt.setString(3, "관리자" + i);
+//				}
+//				
+//				pstmt.executeUpdate();
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			
+//		} finally {
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//			
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (SQLException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}
+//	}
 	
 	@Test
 	public void testInsertAuth() {
