@@ -38,3 +38,10 @@ create table tbl_member_auth (
      auth varchar2(50) not null,
      constraint fk_member_auth foreign key(userid) references tbl_member(userid)
 );
+
+create table persistent_logins (
+	username varchar2(64) not null,
+	series varchar2(64) primary key,
+	token varchar2(64) not null,
+	last_used date not null
+);
